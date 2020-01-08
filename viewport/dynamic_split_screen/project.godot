@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "CameraController",
+"language": "GDScript",
+"path": "res://CameraController.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player1",
+"language": "GDScript",
+"path": "res://Player1.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player2",
+"language": "GDScript",
+"path": "res://Player2.gd"
+}, {
+"base": "Spatial",
+"class": "Walls",
+"language": "GDScript",
+"path": "res://Walls.gd"
+} ]
+_global_script_class_icons={
+"CameraController": "",
+"Player1": "",
+"Player2": "",
+"Walls": ""
+}
+
+[application]
+
+config/name="Dynamic Split Screen"
+run/main_scene="res://SplitScreen.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"
