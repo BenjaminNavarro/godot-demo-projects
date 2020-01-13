@@ -1,5 +1,4 @@
 extends KinematicBody
-class_name Player1
 
 """
 Moves the player with WASD keys

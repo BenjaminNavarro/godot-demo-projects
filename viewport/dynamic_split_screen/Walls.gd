@@ -1,5 +1,4 @@
 extends Spatial
-class_name Walls
 
 """
 Set a random color to all objects in the 'walls' group

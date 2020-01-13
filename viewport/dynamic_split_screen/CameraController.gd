@@ -1,5 +1,5 @@
 extends Spatial
-class_name CameraController
+
 """
 Handle the motion of both players' camera as well as communication with the
 SplitScreen shader to achieve the dynamic split screen effet

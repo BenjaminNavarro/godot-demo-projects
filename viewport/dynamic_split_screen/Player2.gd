@@ -1,5 +1,4 @@
 extends KinematicBody
-class_name Player2
 
 """
 Moves the player with IJKL keys
