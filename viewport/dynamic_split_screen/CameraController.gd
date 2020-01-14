@@ -93,9 +93,12 @@ func _update_splitscreen() -> void:
 	view.material.set_shader_param('split_line_color', split_line_color)
 	
 	
+# Split screen is active if players are too far apart from each other.
+# Only the horizontal components (x, z) are used for distance computation
 func _get_split_state() -> bool:
 	var position_difference := _compute_position_difference_in_world()
-	return _compute_horizontal_length(position_difference) > max_separation
+	var separation_distance := _compute_horizontal_length(position_difference)
+	return separation_distance > max_separation
 	
 	
 func _on_size_changed() -> void:
