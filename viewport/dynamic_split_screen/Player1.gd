@@ -1,8 +1,6 @@
 extends KinematicBody
 
-"""
-Moves the player with WASD keys
-"""
+# Moves the player with WASD keys
 
 export var walk_speed := 20
 

@@ -1,8 +1,6 @@
 extends Spatial
 
-"""
-Set a random color to all objects in the 'walls' group
-"""
+# Set a random color to all objects in the 'walls' group
 
 func _ready() -> void:
 	var walls := get_tree().get_nodes_in_group("walls")

@@ -1,8 +1,6 @@
 extends KinematicBody
 
-"""
-Moves the player with IJKL keys
-"""
+# Moves the player with IJKL keys
 
 export var walk_speed := 20
 
