@@ -5,7 +5,6 @@ uniform vec2 viewport_size;         // size in pixels of the viewport. Cannot be
 uniform sampler2D viewport1 : hint_albedo;
 uniform sampler2D viewport2 : hint_albedo;
 uniform bool split_active;          // true: split screen, false: use view1
-uniform vec2 split_origin;          // center point in UV coordinates. (0.5, 0.5) for center
 uniform vec2 player1_position;      // position of player 1 un UV coordinates
 uniform vec2 player2_position;      // position of player 2 un UV coordinates
 uniform float split_line_thickness; // width of the split boder
@@ -37,6 +36,7 @@ void fragment() {
 			split_slope = 100000.0; // High value (vertical split) if dx.y = 0
 		}
 		
+		vec2 split_origin = vec2(0.5, 0.5);
 		vec2 split_line_start = vec2(0.0, height * ((split_origin.x - 0.0) * split_slope + split_origin.y));
 		vec2 split_line_end = vec2(width, height * ((split_origin.x - 1.0) * split_slope + split_origin.y));
 		float distance_to_split_line = distanceToLine(split_line_start, split_line_end, vec2(UV.x * width, UV.y * height));

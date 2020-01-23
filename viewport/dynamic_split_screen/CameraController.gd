@@ -18,14 +18,11 @@ extends Spatial
 #   adaptive_split_line_thickness: if true, the split line thickness will vary 
 #       depending on the distance between players. If false, the thickness will
 #       be constant and equal to split_line_thickness
-#   split_origin: where the split line passes trough. By default it is the 
-#       middle of the screen (0.5, 0.5) 
 
 export(float) var max_separation = 20.0
 export(float) var split_line_thickness = 3.0
 export(Color, RGBA) var split_line_color = Color(0.0, 0.0, 0.0, 1.0)
 export(bool) var adaptive_split_line_thickness = true
-export(Vector2) var split_origin = Vector2(0.5, 0.5)
 
 onready var player1 = $'../Player1'
 onready var player2 = $'../Player2'
@@ -84,7 +81,6 @@ func _update_splitscreen():
 		thickness = split_line_thickness
 	
 	view.material.set_shader_param('split_active', _get_split_state())
-	view.material.set_shader_param('split_origin', split_origin)
 	view.material.set_shader_param('player1_position', player1_position)
 	view.material.set_shader_param('player2_position', player2_position)
 	view.material.set_shader_param('split_line_thickness', thickness)
