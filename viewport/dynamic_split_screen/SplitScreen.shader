@@ -1,26 +1,27 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform vec2 viewport_size;			// size in pixels of the viewport. Cannot be access from the shader in GLES2
+uniform vec2 viewport_size;         // size in pixels of the viewport. Cannot be access from the shader in GLES2
 uniform sampler2D viewport1 : hint_albedo;
 uniform sampler2D viewport2 : hint_albedo;
-uniform bool split_active; 			// true: split screen, false: use view1
-uniform vec2 split_origin;			// center point in UV coordinates. (0.5, 0.5) for center
-uniform vec2 player1_position;		// position of player 1 un UV coordinates
-uniform vec2 player2_position;		// position of player 2 un UV coordinates
-uniform float split_line_thickness;	// width of the split boder
-uniform vec4 split_line_color;		// color of the split border
+uniform bool split_active;          // true: split screen, false: use view1
+uniform vec2 split_origin;          // center point in UV coordinates. (0.5, 0.5) for center
+uniform vec2 player1_position;      // position of player 1 un UV coordinates
+uniform vec2 player2_position;      // position of player 2 un UV coordinates
+uniform float split_line_thickness; // width of the split boder
+uniform vec4 split_line_color;      // color of the split border
+
 
 // from https://stackoverflow.com/questions/15276454/is-it-possible-to-draw-line-thickness-in-a-fragment-shader
 float distanceToLine(vec2 p1, vec2 p2, vec2 point) {
-    float a = p1.y-p2.y;
-    float b = p2.x-p1.x;
-    return abs(a*point.x+b*point.y+p1.x*p2.y-p2.x*p1.y) / sqrt(a*a+b*b);
+	float a = p1.y - p2.y;
+	float b = p2.x - p1.x;
+	return abs(a * point.x + b * point.y + p1.x * p2.y - p2.x * p1.y) / sqrt(a * a + b * b);
 }
 
 void fragment() {
-    vec3 view1 = texture(viewport1, UV).rgb;
-    vec3 view2 = texture(viewport2, UV).rgb;
+	vec3 view1 = texture(viewport1, UV).rgb;
+	vec3 view2 = texture(viewport2, UV).rgb;
 
 	float width = viewport_size.x;
 	float height = viewport_size.y;

@@ -12,14 +12,14 @@ extends Spatial
 # segement joining the two players.
 # 
 # The points of customization are:
-# 	max_separation: the distance between players at which the view starts to split
-# 	split_line_thickness: the thickness of the split line in pixels
-# 	split_line_color: color of the split line
-# 	adaptive_split_line_thickness: if true, the split line thickness will vary 
-# 		depending on the distance between players. If false, the thickness will
-# 		be constant and equal to split_line_thickness
-# 	split_origin: where the split line passes trough. By default it is the 
-# 		middle of the screen (0.5, 0.5) 
+#   max_separation: the distance between players at which the view starts to split
+#   split_line_thickness: the thickness of the split line in pixels
+#   split_line_color: color of the split line
+#   adaptive_split_line_thickness: if true, the split line thickness will vary 
+#       depending on the distance between players. If false, the thickness will
+#       be constant and equal to split_line_thickness
+#   split_origin: where the split line passes trough. By default it is the 
+#       middle of the screen (0.5, 0.5) 
 
 export var max_separation := 20
 export var split_line_thickness := 3.0;
