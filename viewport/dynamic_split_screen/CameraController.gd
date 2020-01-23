@@ -21,20 +21,20 @@ extends Spatial
 #   split_origin: where the split line passes trough. By default it is the 
 #       middle of the screen (0.5, 0.5) 
 
-export var max_separation := 20
-export var split_line_thickness := 3.0;
-export var split_line_color := Color(0.0, 0.0, 0.0, 1.0)
-export var adaptive_split_line_thickness := true
-export var split_origin := Vector2(0.5, 0.5)
+export(float) var max_separation = 20.0
+export(float) var split_line_thickness = 3.0
+export(Color, RGBA) var split_line_color = Color(0.0, 0.0, 0.0, 1.0)
+export(bool) var adaptive_split_line_thickness = true
+export(Vector2) var split_origin = Vector2(0.5, 0.5)
 
-onready var player1: KinematicBody = $'../Player1'
-onready var player2: KinematicBody = $'../Player2'
+onready var player1 = $'../Player1'
+onready var player2 = $'../Player2'
 onready var camera1: Camera = $'Viewport1/Camera1'
 onready var camera2: Camera = $'Viewport2/Camera2'
 onready var view: TextureRect = $'View'
 
 
-func _ready() -> void:
+func _ready():
 	_on_size_changed()
 	_update_splitscreen()
 	
@@ -44,15 +44,15 @@ func _ready() -> void:
 	view.material.set_shader_param('viewport2', $Viewport2.get_texture())
 
 
-func _process(delta) -> void:
+func _process(delta):
 	_move_cameras()
 	_update_splitscreen()
 
 
-func _move_cameras() -> void:
-	var position_difference := _compute_position_difference_in_world()
+func _move_cameras():
+	var position_difference = _compute_position_difference_in_world()
 	
-	var distance := clamp(_compute_horizontal_length(position_difference), 0, max_separation)
+	var distance = clamp(_compute_horizontal_length(position_difference), 0, max_separation)
 
 	position_difference = position_difference.normalized() * distance
 
@@ -63,21 +63,21 @@ func _move_cameras() -> void:
 	camera2.translation.z = player2.translation.z - position_difference.z / 2.0
 
 
-func _update_splitscreen() -> void:
-	var screen_size := get_viewport().get_visible_rect().size
+func _update_splitscreen():
+	var screen_size = get_viewport().get_visible_rect().size
 	
-	var player1_position := camera1.unproject_position(player1.translation)
+	var player1_position = camera1.unproject_position(player1.translation)
 	player1_position.x /= screen_size.x;
 	player1_position.y /= screen_size.y;
 
-	var player2_position := camera2.unproject_position(player2.translation)
+	var player2_position = camera2.unproject_position(player2.translation)
 	player2_position.x /= screen_size.x;
 	player2_position.y /= screen_size.y;
 	
-	var thickness: float
+	var thickness
 	if adaptive_split_line_thickness:
-		var position_difference := _compute_position_difference_in_world()
-		var distance := _compute_horizontal_length(position_difference)
+		var position_difference = _compute_position_difference_in_world()
+		var distance = _compute_horizontal_length(position_difference)
 		thickness = lerp(0, split_line_thickness, (distance - max_separation) / max_separation)
 		thickness = clamp(thickness, 0, split_line_thickness)
 	else:
@@ -93,14 +93,14 @@ func _update_splitscreen() -> void:
 
 # Split screen is active if players are too far apart from each other.
 # Only the horizontal components (x, z) are used for distance computation
-func _get_split_state() -> bool:
-	var position_difference := _compute_position_difference_in_world()
-	var separation_distance := _compute_horizontal_length(position_difference)
+func _get_split_state():
+	var position_difference = _compute_position_difference_in_world()
+	var separation_distance = _compute_horizontal_length(position_difference)
 	return separation_distance > max_separation
 
 
-func _on_size_changed() -> void:
-	var screen_size := get_viewport().get_visible_rect().size
+func _on_size_changed():
+	var screen_size = get_viewport().get_visible_rect().size
 	
 	$Viewport1.size = screen_size
 	$Viewport2.size = screen_size
@@ -109,9 +109,9 @@ func _on_size_changed() -> void:
 	view.material.set_shader_param('viewport_size', screen_size)
 
 
-func _compute_position_difference_in_world() -> Vector3:
+func _compute_position_difference_in_world():
 	return player2.translation - player1.translation
 
 
-func _compute_horizontal_length(vec: Vector3) -> float:
+func _compute_horizontal_length(vec):
 	return Vector2(vec.x, vec.z).length()
