@@ -1,12 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://CameraController.gd" type="Script" id=1]
 [ext_resource path="res://SplitScreen.shader" type="Shader" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Player1.gd" type="Script" id=4]
-[ext_resource path="res://Player2.gd" type="Script" id=5]
-[ext_resource path="res://floor.jpg" type="Texture" id=6]
-[ext_resource path="res://Walls.gd" type="Script" id=7]
+[ext_resource path="res://PlayerMovement.gd" type="Script" id=4]
+[ext_resource path="res://floor.jpg" type="Texture" id=5]
+[ext_resource path="res://Walls.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -36,7 +35,7 @@ material = SubResource( 6 )
 size = Vector2( 200, 200 )
 
 [sub_resource type="VisualShaderNodeTexture" id=8]
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [sub_resource type="VisualShaderNodeInput" id=9]
 output_port_for_preview = 0
@@ -155,7 +154,8 @@ shape = SubResource( 4 )
 [node name="Player2" type="KinematicBody" parent="."]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.18358, 1.25, 3.01882 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
+player_id = 2
 
 [node name="Mesh" type="MeshInstance" parent="Player2"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -180,7 +180,7 @@ shape = SubResource( 13 )
 
 [node name="Walls" type="Spatial" parent="."]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="Group1" type="Spatial" parent="Walls"]
 
