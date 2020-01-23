@@ -42,13 +42,13 @@ func _ready() -> void:
 	
 	view.material.set_shader_param('viewport1', $Viewport1.get_texture())
 	view.material.set_shader_param('viewport2', $Viewport2.get_texture())
-	
-	
+
+
 func _process(delta) -> void:
 	_move_cameras()
 	_update_splitscreen()
-	
-	
+
+
 func _move_cameras() -> void:
 	var position_difference := _compute_position_difference_in_world()
 	
@@ -61,8 +61,8 @@ func _move_cameras() -> void:
 
 	camera2.translation.x = player2.translation.x - position_difference.x / 2.0
 	camera2.translation.z = player2.translation.z - position_difference.z / 2.0
-	
-	
+
+
 func _update_splitscreen() -> void:
 	var screen_size := get_viewport().get_visible_rect().size
 	
@@ -89,16 +89,16 @@ func _update_splitscreen() -> void:
 	view.material.set_shader_param('player2_position', player2_position)
 	view.material.set_shader_param('split_line_thickness', thickness)
 	view.material.set_shader_param('split_line_color', split_line_color)
-	
-	
+
+
 # Split screen is active if players are too far apart from each other.
 # Only the horizontal components (x, z) are used for distance computation
 func _get_split_state() -> bool:
 	var position_difference := _compute_position_difference_in_world()
 	var separation_distance := _compute_horizontal_length(position_difference)
 	return separation_distance > max_separation
-	
-	
+
+
 func _on_size_changed() -> void:
 	var screen_size := get_viewport().get_visible_rect().size
 	
@@ -107,11 +107,11 @@ func _on_size_changed() -> void:
 	view.rect_size = screen_size
 	
 	view.material.set_shader_param('viewport_size', screen_size)
-	
-	
+
+
 func _compute_position_difference_in_world() -> Vector3:
 	return player2.translation - player1.translation
-	
-	
+
+
 func _compute_horizontal_length(vec: Vector3) -> float:
 	return Vector2(vec.x, vec.z).length()
