@@ -1,11 +1,11 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://CameraController.gd" type="Script" id=1]
+[ext_resource path="res://3D/CameraController3D.gd" type="Script" id=1]
 [ext_resource path="res://SplitScreen.shader" type="Shader" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://PlayerMovement.gd" type="Script" id=4]
-[ext_resource path="res://floor.jpg" type="Texture" id=5]
-[ext_resource path="res://Walls.gd" type="Script" id=6]
+[ext_resource path="res://Assets/icon.png" type="Texture" id=3]
+[ext_resource path="res://3D/PlayerMovement3D.gd" type="Script" id=4]
+[ext_resource path="res://Assets/floor.jpg" type="Texture" id=5]
+[ext_resource path="res://3D/Walls.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -166,7 +166,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 4 )
 
 [node name="Ground" type="StaticBody" parent="."]
-editor/display_folded = true
 
 [node name="Mesh" type="MeshInstance" parent="Ground"]
 transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0 )
@@ -178,7 +177,6 @@ transform = Transform( 200, 0, 0, 0, 1, 0, 0, 0, 200, 0, -1, 0 )
 shape = SubResource( 13 )
 
 [node name="Walls" type="Spatial" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Group1" type="Spatial" parent="Walls"]

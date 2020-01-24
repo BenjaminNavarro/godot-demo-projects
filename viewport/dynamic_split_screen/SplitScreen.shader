@@ -43,7 +43,7 @@ void fragment() {
 		
 		// Draw split border if close enough
 		if(distance_to_split_line < split_line_thickness) {
-			COLOR = split_line_color;
+			COLOR =  split_line_color;
 		}
 		else {
 			float split_current_y = (split_origin.x - UV.x) * split_slope + split_origin.y;
